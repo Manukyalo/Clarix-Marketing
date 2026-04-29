@@ -1,4 +1,4 @@
-import { Github, Twitter, Linkedin } from "lucide-react";
+import { MessageSquare, Globe, Link } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -18,13 +18,13 @@ export default function Footer() {
 
           <div className="flex items-center gap-4">
             <a href="#" className="p-2 glass rounded-full hover:bg-white/10 transition-all text-white/40 hover:text-[#00b8ff]">
-              <Twitter className="w-4 h-4" />
+              <MessageSquare className="w-4 h-4" />
             </a>
             <a href="#" className="p-2 glass rounded-full hover:bg-white/10 transition-all text-white/40 hover:text-[#00b8ff]">
-              <Linkedin className="w-4 h-4" />
+              <Globe className="w-4 h-4" />
             </a>
             <a href="#" className="p-2 glass rounded-full hover:bg-white/10 transition-all text-white/40 hover:text-[#00b8ff]">
-              <Github className="w-4 h-4" />
+              <Link className="w-4 h-4" />
             </a>
           </div>
         </div>
