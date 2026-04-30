@@ -1,38 +1,73 @@
-import { MessageSquare, Globe, Link } from "lucide-react";
+import Link from "next/link";
+
+const FOOTER_LINKS = {
+  Platform: [
+    { label: "Intelligence Engine", href: "/platform#intelligence" },
+    { label: "Carrier Connect", href: "/platform#connect" },
+    { label: "Analytics", href: "/platform#analytics" },
+    { label: "Security", href: "/platform#security" },
+  ],
+  Company: [
+    { label: "About", href: "/company#about" },
+    { label: "Careers", href: "/company#careers" },
+    { label: "Blog", href: "/resources#blog" },
+    { label: "Contact", href: "/company#contact" },
+  ],
+};
 
 export default function Footer() {
   return (
-    <footer className="py-12 border-t border-white/5">
+    <footer className="bg-slate-900 py-20 font-sans antialiased">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-white/10 rounded flex items-center justify-center font-bold text-xs">C</div>
-            <span className="text-sm font-bold tracking-tighter opacity-80 uppercase">Clarix Logistics</span>
-          </div>
-          
-          <div className="flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-white/40">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-white transition-colors">Contact</a>
+        {/* Top row */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          {/* Brand */}
+          <div className="col-span-1 md:col-span-2">
+            <div className="flex items-center gap-2.5 mb-6 text-white no-underline">
+              <div
+                className="w-8 h-8 rounded flex items-center justify-center font-bold text-sm"
+                style={{ backgroundColor: "var(--primary)" }}
+              >
+                CX
+              </div>
+              <span className="text-2xl font-bold tracking-tighter">
+                CLARIX
+              </span>
+            </div>
+            <p className="text-slate-400 max-w-sm mb-8 leading-relaxed font-sans">
+              Enterprise-grade AI for intelligent logistics, supply chain optimization, and automated carrier networks.
+            </p>
           </div>
 
-          <div className="flex items-center gap-4">
-            <a href="#" className="p-2 glass rounded-full hover:bg-white/10 transition-all text-white/40 hover:text-[#00b8ff]">
-              <MessageSquare className="w-4 h-4" />
-            </a>
-            <a href="#" className="p-2 glass rounded-full hover:bg-white/10 transition-all text-white/40 hover:text-[#00b8ff]">
-              <Globe className="w-4 h-4" />
-            </a>
-            <a href="#" className="p-2 glass rounded-full hover:bg-white/10 transition-all text-white/40 hover:text-[#00b8ff]">
-              <Link className="w-4 h-4" />
-            </a>
-          </div>
+          {/* Link columns */}
+          {Object.entries(FOOTER_LINKS).map(([group, links]) => (
+            <div key={group}>
+              <h4 className="text-white font-bold mb-6 tracking-tight">
+                {group}
+              </h4>
+              <ul className="space-y-4 p-0 list-none m-0">
+                {links.map(({ label, href }) => (
+                  <li key={label}>
+                    <Link
+                      href={href}
+                      className="text-slate-400 hover:text-white transition-colors font-sans no-underline"
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
-        
-        <div className="mt-12 text-center">
-          <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/20">
-            © 2024 Clarix Intelligence Systems. All rights reserved.
-          </p>
+
+        {/* Bottom bar */}
+        <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm font-sans">
+          <p className="m-0">© {new Date().getFullYear()} Clarix Intelligence Inc. All rights reserved.</p>
+          <div className="flex space-x-6 mt-4 md:mt-0">
+            <Link href="/privacy" className="hover:text-white transition-colors no-underline text-inherit">Privacy</Link>
+            <Link href="/terms" className="hover:text-white transition-colors no-underline text-inherit">Terms</Link>
+          </div>
         </div>
       </div>
     </footer>

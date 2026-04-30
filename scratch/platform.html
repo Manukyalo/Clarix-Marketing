@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Clarix OS Platform | Global Logistics Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#1c1b1b",
+                        "on-tertiary-fixed-variant": "#005143",
+                        "inverse-on-surface": "#f3f0ef",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#5700c9",
+                        "primary": "#00658e",
+                        "on-primary": "#ffffff",
+                        "outline": "#6d7881",
+                        "tertiary": "#006b5a",
+                        "secondary-fixed": "#e9ddff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#23005b",
+                        "tertiary-fixed-dim": "#2cdebf",
+                        "surface-dim": "#dcd9d9",
+                        "secondary": "#5400c3",
+                        "on-primary-fixed": "#001e2e",
+                        "on-surface": "#1c1b1b",
+                        "background": "#fcf8f8",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#58fbda",
+                        "on-secondary-container": "#ddcdff",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#fcf8f8",
+                        "surface-variant": "#e5e2e1",
+                        "secondary-container": "#7000ff",
+                        "surface-tint": "#00658e",
+                        "primary-fixed-dim": "#84cfff",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f6f3f2",
+                        "surface-container-high": "#ebe7e7",
+                        "inverse-primary": "#84cfff",
+                        "tertiary-container": "#00c2a5",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#004563",
+                        "on-tertiary-fixed": "#00201a",
+                        "surface-container": "#f1edec",
+                        "on-primary-fixed-variant": "#004c6c",
+                        "inverse-surface": "#313030",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-surface-variant": "#3d4850",
+                        "outline-variant": "#bdc8d2",
+                        "secondary-fixed-dim": "#d1bcff",
+                        "primary-fixed": "#c7e7ff",
+                        "surface": "#fcf8f8",
+                        "on-tertiary-container": "#00493d",
+                        "primary-container": "#00b8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "section-gap": "80px",
+                        "margin": "32px",
+                        "gutter": "24px",
+                        "container-max": "1200px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "label-md": ["Inter"],
+                        "headline-xl": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .intelligence-layer-grid {
+            background-image: radial-gradient(circle at 2px 2px, #e5e7eb 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased selection:bg-primary-container">
+<!-- TopNavBar -->
+<nav class="bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 docked full-width top-0 sticky z-50 font-['Manrope'] antialiased tracking-tight">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-12">
+<span class="text-2xl font-bold tracking-tighter text-slate-900 dark:text-white">Clarix</span>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Solutions</a>
+<a class="text-[#00B8FF] border-b-2 border-[#00B8FF] pb-1 font-semibold" href="#">Platform</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Intelligence</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Resources</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-slate-900 dark:hover:text-white transition-colors" href="#">Company</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-600 dark:text-slate-400 font-medium hover:text-slate-900 px-4 py-2 text-sm transition-all duration-200">Login</button>
+<button class="bg-primary-container text-on-primary-container px-5 py-2.5 text-sm font-bold rounded-lg hover:bg-opacity-90 active:scale-[0.99] transition-all">Request Demo</button>
+</div>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative pt-24 pb-32 overflow-hidden">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="relative z-10">
+<span class="font-label-md text-label-md text-primary tracking-widest uppercase mb-6 block">The Infrastructure of Trade</span>
+<h1 class="font-headline-xl text-headline-xl mb-8">The Core Architecture of Global Operations.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-10">
+                        Clarix OS is a purpose-built infrastructure designed to unify fragmented logistics data into a singular, high-performance execution environment. Reliable, secure, and infinitely scalable.
+                    </p>
+<div class="flex gap-4">
+<button class="bg-primary-container text-on-primary-container px-8 py-4 font-bold rounded shadow-sm hover:shadow-md transition-shadow">Explore Documentation</button>
+<button class="border border-outline-variant px-8 py-4 font-bold rounded hover:bg-surface-container-low transition-colors">View Security Whitepaper</button>
+</div>
+</div>
+<div class="relative">
+<div class="aspect-square bg-surface-container-high rounded-full overflow-hidden border border-outline-variant/30 relative">
+<img alt="Platform Core" class="w-full h-full object-cover grayscale brightness-110 contrast-125" data-alt="A highly detailed 3D technical blueprint of a server core floating in a pristine, white architectural space. The core is composed of crystalline structures and translucent blue data fibers, reflecting a clean, corporate light-mode aesthetic. Soft cyan and azure highlights punctuate the scene, emphasizing high-tech security and architectural precision. The lighting is bright and airy, suggesting institutional trust and transparency." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4TWfFhmW4-lS89vS-OyiT3u4a7SZC5tmIoFu09h4FQtW0MKKDircYt4sNCA0UCXbLfUqSMy9ZYHanGW3jkEfgRRmEgg1FjOOt8kfuXoiew92ibIALUCMKY_bC5rZ8ox0LeCHOCVqqlpPPEEV4yy4uN2QQS6jxk2T45c1Db-4HoIGTlQ0pnsYDMIKAEp2S1IPCkE6k3l1zZeThZKjAuGgrJw-ypqQDgUVWHp0e-LQuZmfdUZvlK4r5zdQNjdt4AEWSnGpMmFR6EhfR"/>
+</div>
+<div class="absolute -bottom-8 -left-8 bg-white p-6 shadow-xl border border-slate-100 max-w-xs">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-[#00B8FF]">verified_user</span>
+<span class="font-label-md text-label-md font-bold uppercase">Uptime Guaranteed</span>
+</div>
+<p class="text-3xl font-black text-slate-900">99.999%</p>
+<p class="text-xs text-slate-500 mt-1">Enterprise-grade reliability across 42 global regions.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Security Architecture Section (Bento Grid) -->
+<section class="bg-surface-container-low py-section-gap">
+<div class="max-w-7xl mx-auto px-6">
+<div class="mb-16">
+<h2 class="font-headline-lg text-headline-lg mb-4">Hardened Security Architecture.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Security isn't a feature; it's the foundation. Our multi-layered defense strategy protects data integrity at every hop.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="md:col-span-2 bg-white p-10 border border-outline-variant flex flex-col justify-between group hover:border-primary-container transition-colors">
+<div>
+<span class="material-symbols-outlined text-4xl text-[#00B8FF] mb-6">lock</span>
+<h3 class="font-headline-md text-headline-md mb-4">Zero-Trust Environment</h3>
+<p class="text-on-surface-variant max-w-md">Every request is authenticated, authorized, and continuously validated. We employ identity-based micro-segmentation to ensure lateral movement is impossible.</p>
+</div>
+<div class="mt-12 flex items-center gap-4 text-sm font-bold text-primary group-hover:translate-x-2 transition-transform">
+                            LEARN MORE <span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</div>
+<div class="bg-white p-10 border border-outline-variant hover:border-primary-container transition-colors">
+<span class="material-symbols-outlined text-4xl text-[#00B8FF] mb-6">shield</span>
+<h3 class="font-headline-md text-headline-md mb-4">AES-256 Encryption</h3>
+<p class="text-on-surface-variant">Military-grade encryption for data at rest and in transit. Your proprietary logistics data remains entirely opaque to unauthorized entities.</p>
+</div>
+<div class="bg-white p-10 border border-outline-variant hover:border-primary-container transition-colors">
+<span class="material-symbols-outlined text-4xl text-[#00B8FF] mb-6">terminal</span>
+<h3 class="font-headline-md text-headline-md mb-4">Automated Audit</h3>
+<p class="text-on-surface-variant">Immutable ledger logging for every system interaction, ensuring total compliance with global regulatory standards like GDPR and SOC2.</p>
+</div>
+<div class="md:col-span-2 bg-slate-900 p-10 text-white relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md mb-4 text-white">Quantum-Resistant HSM</h3>
+<p class="text-slate-400 max-w-lg mb-8">Deploying next-generation hardware security modules to safeguard the keys of tomorrow. Our architecture is built to withstand emerging cryptographic threats.</p>
+<div class="flex gap-4">
+<span class="px-3 py-1 bg-white/10 text-xs font-bold tracking-widest rounded-full uppercase">ISO 27001</span>
+<span class="px-3 py-1 bg-white/10 text-xs font-bold tracking-widest rounded-full uppercase">HIPAA Compliant</span>
+</div>
+</div>
+<div class="absolute right-[-10%] bottom-[-10%] opacity-20 rotate-12">
+<span class="material-symbols-outlined text-[240px]">security</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Intelligence Layer (Diagrammatic/Asymmetric) -->
+<section class="py-section-gap intelligence-layer-grid relative">
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-20">
+<div class="max-w-xl">
+<span class="font-label-md text-label-md text-primary tracking-widest uppercase mb-4 block">The Core Logic</span>
+<h2 class="font-headline-lg text-headline-lg">The Intelligence Layer.</h2>
+</div>
+<p class="text-on-surface-variant max-w-sm border-l-2 border-primary-container pl-6">
+                        Beyond simple routing, our intelligence layer synthesizes global signals into actionable operational commands.
+                    </p>
+</div>
+<div class="relative py-12">
+<!-- Orchestration Flow -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
+<div class="bg-white border border-outline-variant p-8 relative z-20">
+<div class="w-12 h-12 bg-primary-container flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-on-primary-container">sensors</span>
+</div>
+<h4 class="font-bold mb-3">Signal Ingestion</h4>
+<p class="text-sm text-on-surface-variant">Real-time telemetry from 1.2M nodes including ports, vessels, and weather satellites.</p>
+</div>
+<div class="hidden md:flex items-center justify-center relative">
+<div class="w-full h-[1px] bg-outline-variant absolute"></div>
+<span class="material-symbols-outlined text-outline bg-background px-2 relative z-10">chevron_right</span>
+</div>
+<div class="bg-white border border-outline-variant p-8 relative z-20 shadow-xl">
+<div class="w-12 h-12 bg-[#5400c3] flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-white">psychology</span>
+</div>
+<h4 class="font-bold mb-3">Neural Processing</h4>
+<p class="text-sm text-on-surface-variant">Proprietary AI models analyze congestion patterns and predict delays before they occur.</p>
+</div>
+<div class="bg-white border border-outline-variant p-8 relative z-20">
+<div class="w-12 h-12 bg-tertiary-container flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-on-tertiary-container">rocket_launch</span>
+</div>
+<h4 class="font-bold mb-3">Active Routing</h4>
+<p class="text-sm text-on-surface-variant">Autonomous adjustment of shipping lanes and fulfillment priorities in real-time.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Global Distribution Map Section -->
+<section class="py-section-gap border-t border-outline-variant">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
+<div class="lg:col-span-2">
+<h2 class="font-headline-lg text-headline-lg mb-8">Edge-to-Edge Continuity.</h2>
+<div class="space-y-8">
+<div class="flex gap-6">
+<div class="text-primary pt-1"><span class="material-symbols-outlined">public</span></div>
+<div>
+<h4 class="font-bold mb-2">Global Low-Latency Node Network</h4>
+<p class="text-on-surface-variant text-sm">Deployment across every major trade hub ensures sub-10ms response times for critical logistics decisions.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="text-primary pt-1"><span class="material-symbols-outlined">lan</span></div>
+<div>
+<h4 class="font-bold mb-2">Seamless Integration Engine</h4>
+<p class="text-on-surface-variant text-sm">Universal API connectors bridge the gap between legacy ERP systems and modern IoT hardware ecosystems.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="text-primary pt-1"><span class="material-symbols-outlined">sync</span></div>
+<div>
+<h4 class="font-bold mb-2">Infinite Redundancy</h4>
+<p class="text-on-surface-variant text-sm">Self-healing architecture that automatically reroutes data traffic if a regional node experiences failure.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-3">
+<div class="bg-slate-50 border border-outline-variant p-1 aspect-[16/9] overflow-hidden grayscale">
+<img alt="Global Node Distribution" class="w-full h-full object-cover" data-alt="A sophisticated global data map displayed on a large, high-resolution minimalist screen. The map shows glowing interconnecting nodes across the world's continents, emphasizing the reach of a global logistics platform. The aesthetic is clean and corporate, featuring a palette of whites, soft greys, and vibrant azure blue lines that represent data flow. The lighting is soft and professional, highlighting institutional stability and modern technological prowess." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkd2aPS91WPxKwiEyX0mW-_wdxsQ-kemkd-0QkuMT5Fptm9XGo5yJmYygrh96B2JthB1skprjERic2INN8leUlvkHWuOjSK6gTCkW_pgjEYYX76mzMzKfLOptJsHjJlLhzPbCp_T1Vaie3_QlcO_wTjOLlkq-Vi5JCMf8o3AFx_LszhmMuyAtE7Zj8TskW88A91wFFXyyy9tdr2PeG_kY8ztI1PH9JUpq3oc4J0K8oofuWV-R09akjOne-1QLbetUUQURv9dh1u71T"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-section-gap">
+<div class="max-w-7xl mx-auto px-6 text-center">
+<div class="bg-primary px-12 py-20 relative overflow-hidden">
+<div class="relative z-10">
+<h2 class="font-headline-xl text-headline-xl text-white mb-6">Build the Future of Logistics.</h2>
+<p class="text-white/80 max-w-xl mx-auto mb-10 font-body-lg">Get started with Clarix OS today and transform your infrastructure into a competitive advantage.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="bg-white text-primary px-10 py-4 font-bold rounded hover:bg-slate-50 transition-colors">Contact Sales Engineering</button>
+<button class="border-2 border-white text-white px-10 py-4 font-bold rounded hover:bg-white/10 transition-colors">Developer Portal</button>
+</div>
+</div>
+<!-- Background Decoration -->
+<div class="absolute top-0 right-0 p-12 opacity-10">
+<span class="material-symbols-outlined text-[300px] text-white">architecture</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-900 py-20 border-t border-slate-200 dark:border-slate-800 font-['Manrope'] text-sm tracking-wide">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto px-6">
+<div class="md:col-span-1">
+<span class="text-xl font-black text-slate-900 dark:text-white mb-6 block">Clarix</span>
+<p class="text-slate-500 mb-6 leading-relaxed">The authoritative infrastructure for global trade intelligence. Secure, scalable, and built for the modern enterprise.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer transition-colors">public</span>
+<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer transition-colors">hub</span>
+<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer transition-colors">monitoring</span>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-6 uppercase tracking-wider text-xs">Resources</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:translate-x-1 transition-transform duration-200 block" href="#">Documentation</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:translate-x-1 transition-transform duration-200 block" href="#">System Status</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:translate-x-1 transition-transform duration-200 block" href="#">API Reference</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:translate-x-1 transition-transform duration-200 block" href="#">Developer Forum</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-6 uppercase tracking-wider text-xs">Legal</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:translate-x-1 transition-transform duration-200 block" href="#">Privacy Policy</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:translate-x-1 transition-transform duration-200 block" href="#">Terms of Service</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:translate-x-1 transition-transform duration-200 block" href="#">Security Architecture</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:translate-x-1 transition-transform duration-200 block" href="#">ESG Commitment</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-6 uppercase tracking-wider text-xs">Newsletter</h4>
+<p class="text-slate-500 mb-4">Insights into the future of trade tech.</p>
+<div class="flex border-b border-slate-300 dark:border-slate-700 pb-2">
+<input class="bg-transparent border-none focus:ring-0 w-full text-sm" placeholder="Email address" type="email"/>
+<button class="text-primary font-bold ml-2 transition-transform hover:translate-x-1">Join</button>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="text-slate-400 text-xs">© 2024 Clarix Intelligence Inc. Global Logistics Authority.</span>
+<div class="flex gap-8">
+<span class="text-slate-400 text-xs cursor-pointer hover:text-slate-900 transition-colors">Cookie Settings</span>
+<span class="text-slate-400 text-xs cursor-pointer hover:text-slate-900 transition-colors">Site Map</span>
+</div>
+</div>
+</footer>
+</body></html>

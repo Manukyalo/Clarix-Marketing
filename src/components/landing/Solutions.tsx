@@ -1,88 +1,151 @@
 "use client";
 import { motion } from "framer-motion";
-import { Ship, Package, LineChart, ShieldCheck } from "lucide-react";
+import { Anchor, Package, Globe, ArrowRight } from "lucide-react";
 
-const solutions = [
+const SOLUTIONS = [
   {
-    id: "port-ops",
-    title: "Port Operations",
-    subtitle: "Throughput Optimization",
-    description: "Streamline vessel discharge and gate operations with real-time automated data capture and labor allocation models.",
-    icon: Ship,
+    id: "port-operations",
+    icon: Anchor,
+    category: "Port Operations",
+    headline: "Eliminate port congestion before it starts",
+    description:
+      "Optimising terminal throughput with AI-sequencing and predictive vessel berthing. Clarix models arrival windows, berth availability, and crane utilisation to keep every port operating at theoretical maximum.",
+    metrics: [
+      { value: "38%", label: "Reduction in dwell time" },
+      { value: "99.2%", label: "Berth prediction accuracy" },
+    ],
+    cta: "View Case Study",
+    color: "#00658e",
   },
   {
-    id: "bulk-logistics",
-    title: "Bulk & Batch",
-    subtitle: "Precision Inventory",
-    description: "Manage complex bulk commodities with automated reconciliation and batch-level traceability across your entire network.",
+    id: "bulk-batch",
     icon: Package,
+    category: "Bulk & Batch",
+    headline: "Commodity management at institutional scale",
+    description:
+      "Managing high-volume commodities with specialised auditing tools that track quality and compliance at scale across grain, ore, oil, and dry bulk shipments.",
+    metrics: [
+      { value: "100%", label: "Cargo traceability" },
+      { value: "6× faster", label: "Audit completion" },
+    ],
+    cta: "Learn More",
+    color: "#5400c3",
   },
   {
-    id: "compliance",
-    title: "Global Compliance",
-    subtitle: "Risk Mitigation",
-    description: "Automate regulatory reporting and auditing with immutable records that stand up to the strictest global standards.",
-    icon: ShieldCheck,
-  }
+    id: "global-compliance",
+    icon: Globe,
+    category: "Global Compliance",
+    headline: "Zero-delay border crossings at scale",
+    description:
+      "Automated customs filings and regulatory monitoring across 180+ countries. Our engine interprets tariff schedules, sanction lists, and certificate-of-origin requirements in real-time.",
+    metrics: [
+      { value: "180+", label: "Countries automated" },
+      { value: "0", label: "Compliance incidents" },
+    ],
+    cta: "Regulatory Guide",
+    color: "#006b5a",
+  },
 ];
 
 export default function Solutions() {
   return (
-    <section id="solutions" className="py-24 bg-white/5 border-y border-white/5">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
-          <div>
-            <span className="text-[#00b8ff] font-bold tracking-widest text-xs uppercase mb-4 block">Industries</span>
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight leading-tight">
-              Solving the <br />
-              <span className="text-white/40 italic">Invisible Problems</span> <br />
-              of Global Trade
-            </h2>
-            <p className="text-white/60 text-lg mb-12 max-w-lg leading-relaxed">
-              Logistics is the backbone of the global economy. Clarix provides the digital infrastructure to make it smarter, faster, and more secure.
-            </p>
-            
-            <div className="space-y-4">
-              {solutions.map((item) => (
-                <div key={item.id} className="p-6 glass-card border-none hover:bg-white/5">
-                  <div className="flex gap-4">
-                    <div className="w-10 h-10 rounded-full bg-[#00b8ff]/10 flex items-center justify-center shrink-0">
-                      <item.icon className="w-5 h-5 text-[#00b8ff]" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white mb-1">{item.title}</h4>
-                      <p className="text-xs text-white/40 uppercase tracking-wider mb-2 font-bold">{item.subtitle}</p>
-                      <p className="text-sm text-white/60 leading-relaxed font-inter">{item.description}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+    <section
+      id="solutions"
+      className="section-gap-lg"
+      style={{ background: "var(--background)" }}
+    >
+      <div className="container-xl">
+        {/* Header */}
+        <div className="max-w-2xl mb-16">
+          <span className="azure-line mb-4" />
+          <p className="label-caps text-[var(--primary)] mb-3">Solutions</p>
+          <h2 className="headline-lg text-[var(--foreground)] mb-4">
+            Solving the invisible problems of global trade
+          </h2>
+          <p
+            className="text-[var(--foreground-muted)] leading-relaxed"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            We look beneath the surface to address the core inefficiencies that
+            stall global commerce — turning operational blind spots into
+            competitive advantages.
+          </p>
+        </div>
 
-          <div className="relative">
-            <div className="absolute inset-0 bg-[#00b8ff]/20 blur-[120px] rounded-full opacity-10 animate-pulse" />
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="glass rounded-3xl p-1 overflow-hidden shadow-2xl relative"
+        {/* Solutions stack */}
+        <div className="flex flex-col gap-6">
+          {SOLUTIONS.map(({ id, icon: Icon, category, headline, description, metrics, cta, color }, i) => (
+            <motion.div
+              key={id}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.55, delay: i * 0.08 }}
+              className="card p-8 md:p-10 grid md:grid-cols-[2fr_1fr] gap-8 items-center group"
             >
-               <div className="aspect-[4/5] bg-gradient-to-br from-zinc-800 to-black p-8 flex flex-col justify-end relative overflow-hidden group">
-                  <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none bg-[url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center grayscale group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                  
-                  <div className="relative z-10">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 glass rounded-full text-[10px] font-bold uppercase tracking-widest text-[#00b8ff] mb-4">
-                      <span className="w-2 h-2 rounded-full bg-[#00b8ff] animate-ping" />
-                      Live Network Status
-                    </div>
-                    <h3 className="text-3xl font-bold mb-2">Clarix OS</h3>
-                    <p className="text-white/60 text-sm font-inter">Deploying infrastructure across 40+ global hubs.</p>
+              {/* Left */}
+              <div>
+                <div className="flex items-center gap-2.5 mb-4">
+                  <div
+                    className="w-9 h-9 rounded flex items-center justify-center"
+                    style={{ backgroundColor: `${color}12` }}
+                  >
+                    <Icon className="w-4.5 h-4.5" style={{ color }} strokeWidth={1.75} />
                   </div>
-               </div>
+                  <span
+                    className="label-caps"
+                    style={{ color }}
+                  >
+                    {category}
+                  </span>
+                </div>
+                <h3
+                  className="headline-md text-[var(--foreground)] mb-3"
+                >
+                  {headline}
+                </h3>
+                <p
+                  className="text-sm text-[var(--foreground-muted)] leading-relaxed mb-5 max-w-lg"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  {description}
+                </p>
+                <button
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold bg-transparent border-none cursor-pointer p-0 transition-colors duration-150"
+                  style={{
+                    color,
+                    fontFamily: "var(--font-inter)",
+                  }}
+                  aria-label={`${cta} for ${category}`}
+                >
+                  {cta} <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </button>
+              </div>
+
+              {/* Right — metrics */}
+              <div className="flex flex-col gap-4">
+                {metrics.map(({ value, label }) => (
+                  <div
+                    key={label}
+                    className="card-flat p-5 rounded-md"
+                  >
+                    <p
+                      className="text-3xl font-bold text-[var(--foreground)] mb-1"
+                      style={{ fontFamily: "var(--font-manrope)", color }}
+                    >
+                      {value}
+                    </p>
+                    <p
+                      className="text-xs text-[var(--foreground-muted)]"
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      {label}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </motion.div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

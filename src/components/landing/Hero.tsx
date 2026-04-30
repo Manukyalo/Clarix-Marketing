@@ -1,58 +1,177 @@
 "use client";
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
+
+const STATS = [
+  { value: "40+", label: "Global Trade Hubs" },
+  { value: "99.9%", label: "OCR Accuracy" },
+  { value: "180+", label: "Countries Covered" },
+  { value: "<10ms", label: "Response Latency" },
+];
+
+const TRUST_LOGOS = [
+  "MAERSK", "DP WORLD", "MSC", "CMA CGM", "HAPAG-LLOYD",
+];
 
 export default function Hero() {
-  return (
-    <section className="relative pt-32 pb-20 overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] glow-mesh opacity-20 -z-10" />
-      
-      <div className="max-w-7xl mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="inline-block px-4 py-1.5 glass rounded-full text-xs font-bold tracking-widest uppercase text-[#00b8ff] mb-6">
-            Enterprise-Grade Logistics
-          </span>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-[1.1] text-white">
-            The Intelligence Layer for <br />
-            <span className="text-primary-gradient italic">Global Logistics</span>
-          </h1>
-          <p className="max-w-2xl mx-auto text-lg text-white/60 mb-10 leading-relaxed font-inter">
-            Clarix redefines port operations with AI-driven extraction, real-time batch auditing, and enterprise-grade security. Built for scale, designed for accuracy.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
-            <button className="btn-primary">
-              Book a Strategy Call <ArrowRight className="w-5 h-5" />
-            </button>
-            <button className="btn-secondary">
-              View Capabilities
-            </button>
-          </div>
-        </motion.div>
+  const scrollTo = (id: string) => {
+    document.querySelector(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative group"
+  return (
+    <section
+      id="hero"
+      className="relative overflow-hidden pt-32 pb-24"
+      style={{ background: "var(--background)" }}
+    >
+      {/* Ambient background */}
+      <div
+        className="pointer-events-none absolute inset-0 -z-10"
+        aria-hidden
+      >
+        <div
+          className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-[0.07]"
+          style={{
+            background:
+              "radial-gradient(circle at 70% 30%, #00b8ff 0%, transparent 70%)",
+          }}
+        />
+        <div
+          className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-[0.05]"
+          style={{
+            background:
+              "radial-gradient(circle at 30% 80%, #7000ff 0%, transparent 70%)",
+          }}
+        />
+        {/* Grid lines */}
+        <svg
+          className="absolute inset-0 w-full h-full opacity-[0.04]"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden
         >
-          <div className="absolute inset-0 bg-[#00b8ff]/20 blur-[100px] rounded-full opacity-20 group-hover:opacity-30 transition-opacity" />
-          <div className="relative glass rounded-3xl p-2 md:p-4 shadow-2xl overflow-hidden border border-white/10">
-            <Image 
-              src="/images/hero-render.png" 
-              alt="Clarix Dashboard Preview" 
-              width={1200} 
-              height={800} 
-              className="rounded-2xl w-full object-cover"
-              priority
-            />
-          </div>
-        </motion.div>
+          <defs>
+            <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+              <path d="M 80 0 L 0 0 0 80" fill="none" stroke="var(--foreground)" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+      </div>
+
+      <div className="container-xl">
+        <div className="max-w-4xl">
+          {/* Label chip */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="chip mb-6 inline-flex">
+              <span
+                className="w-1.5 h-1.5 rounded-full"
+                style={{ backgroundColor: "var(--primary-container)" }}
+              />
+              Global Logistics Intelligence Platform
+            </span>
+          </motion.div>
+
+          {/* Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.08 }}
+            className="headline-xl text-[var(--foreground)] mb-6"
+          >
+            Unifying Global{" "}
+            <span className="text-azure-gradient">Supply Chain Data</span>
+            {" "}Into a Single Source of Truth.
+          </motion.h1>
+
+          {/* Sub-copy */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.16 }}
+            className="text-lg text-[var(--foreground-muted)] mb-10 max-w-2xl leading-relaxed"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            Clarix powers the world's most resilient logistics networks with AI-driven
+            precision, real-time batch auditing, and enterprise-grade security.
+            Built for scale, designed for accuracy.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.24 }}
+            className="flex flex-col sm:flex-row gap-3 mb-16"
+          >
+            <button
+              onClick={() => scrollTo("#contact")}
+              className="btn-primary"
+              id="hero-cta-primary"
+            >
+              Speak with a Solutions Architect <ArrowRight className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => scrollTo("#platform")}
+              className="btn-ghost"
+              id="hero-cta-secondary"
+            >
+              Explore the Platform <ChevronRight className="w-4 h-4" />
+            </button>
+          </motion.div>
+
+          {/* Stats row */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.36 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
+          >
+            {STATS.map(({ value, label }) => (
+              <div key={label} className="stat-card">
+                <p
+                  className="text-2xl font-bold mb-1 text-[var(--foreground)]"
+                  style={{ fontFamily: "var(--font-manrope)" }}
+                >
+                  {value}
+                </p>
+                <p
+                  className="text-xs text-[var(--foreground-muted)]"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  {label}
+                </p>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Trusted by */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.48 }}
+          >
+            <p
+              className="label-caps text-[var(--outline)] mb-4"
+            >
+              Trusted by global leaders
+            </p>
+            <div className="flex flex-wrap items-center gap-8">
+              {TRUST_LOGOS.map((name) => (
+                <span
+                  key={name}
+                  className="text-sm font-bold tracking-wide text-[var(--outline)] opacity-60"
+                  style={{ fontFamily: "var(--font-manrope)" }}
+                >
+                  {name}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

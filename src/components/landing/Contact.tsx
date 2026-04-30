@@ -1,152 +1,291 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, CheckCircle2, Loader2, ArrowRight } from "lucide-react";
+import { CheckCircle2, Loader2, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
 
+const VALUE_PROPS = [
+  "Dedicated Solutions Architect assigned",
+  "Custom API & ERP integration support",
+  "Regional data sovereignty options",
+  "Accelerated 30-day onboarding programme",
+];
+
+type FormState = {
+  name: string;
+  email: string;
+  company: string;
+  role: string;
+  message: string;
+};
+
+const DEFAULT_STATE: FormState = {
+  name: "",
+  email: "",
+  company: "",
+  role: "",
+  message: "",
+};
+
 export default function Contact() {
+  const [form, setForm] = useState<FormState>(DEFAULT_STATE);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  const update = (field: keyof FormState) => (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => setForm((f) => ({ ...f, [field]: e.target.value }));
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
-    
-    const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      company: formData.get("company"),
-      message: formData.get("message"),
-    };
-
     try {
-      const response = await fetch("/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        body: JSON.stringify(data),
+        body: JSON.stringify(form),
+        headers: { "Content-Type": "application/json" },
       });
-
-      if (response.ok) {
-        setSubmitted(true);
-        toast.success("Inquiry received. We will contact you shortly.");
-      } else {
-        throw new Error("Failed to send");
-      }
-    } catch (error) {
-      toast.error("An error occurred. Please try again later.");
+      if (!res.ok) throw new Error("Failed");
+      setSubmitted(true);
+      toast.success("Inquiry received — our team will contact you within 24 hours.");
+    } catch {
+      toast.error("Submission failed. Please try again or email us directly.");
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <section id="company" className="py-24 relative">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="glass rounded-[40px] p-8 md:p-16 border border-white/10 overflow-hidden relative">
-          <div className="absolute top-0 right-0 w-full h-full bg-[#00b8ff]/5 -z-10 blur-[100px]" />
-          
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
-                Secure Your <br />
-                <span className="text-primary-gradient italic">Competitive Edge</span>
-              </h2>
-              <p className="text-white/60 text-lg mb-8 max-w-md font-inter">
-                Clarix is currently available to select enterprise partners. Contact us to schedule a private demonstration and technical audit.
-              </p>
-              
-              <div className="space-y-6">
-                {[
-                  "Accelerated Onboarding",
-                  "Dedicated Technical Support",
-                  "Custom API Integrations",
-                  "Regional Data Compliance"
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <div className="w-5 h-5 rounded-full bg-[#00b8ff]/20 flex items-center justify-center">
-                      <CheckCircle2 className="w-3 h-3 text-[#00b8ff]" />
-                    </div>
-                    <span className="text-white/80 font-medium text-sm">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+    <section
+      id="contact"
+      className="section-gap-lg"
+      style={{ background: "var(--surface-low)" }}
+    >
+      <div className="container-xl">
+        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-12 items-start">
+          {/* Left — value copy */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="azure-line mb-4" />
+            <p className="label-caps text-[var(--primary)] mb-3">Enterprise Partnership</p>
+            <h2 className="headline-lg text-[var(--foreground)] mb-4">
+              Partner with the global leader in logistics intelligence
+            </h2>
+            <p
+              className="text-[var(--foreground-muted)] leading-relaxed mb-8"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              Speak with a solutions architect today. We work exclusively with
+              enterprise partners to ensure every deployment delivers measurable
+              operational improvement within the first 90 days.
+            </p>
 
-            <div className="relative">
-              {submitted ? (
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="bg-white/5 border border-white/10 rounded-3xl p-12 text-center"
+            <ul className="flex flex-col gap-3 mb-10">
+              {VALUE_PROPS.map((item) => (
+                <li key={item} className="flex items-center gap-3">
+                  <CheckCircle2
+                    className="w-4.5 h-4.5 flex-shrink-0"
+                    style={{ color: "var(--primary-container)" }}
+                    strokeWidth={2}
+                  />
+                  <span
+                    className="text-sm text-[var(--foreground)]"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <div
+              className="card-flat p-5 rounded"
+              style={{ borderLeft: "3px solid var(--primary-container)" }}
+            >
+              <p
+                className="text-sm font-semibold text-[var(--foreground)] mb-1"
+                style={{ fontFamily: "var(--font-manrope)" }}
+              >
+                Institutional Inquiries
+              </p>
+              <p
+                className="text-sm text-[var(--foreground-muted)]"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                intelligence@clarix.global
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Right — form */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.12 }}
+          >
+            {submitted ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="card p-12 text-center"
+              >
+                <div
+                  className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
+                  style={{ backgroundColor: "rgba(0,194,165,0.12)" }}
                 >
-                  <div className="w-16 h-16 bg-[#00d1b2]/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle2 className="w-8 h-8 text-[#00d1b2]" />
+                  <CheckCircle2
+                    className="w-7 h-7"
+                    style={{ color: "var(--tertiary-container)" }}
+                  />
+                </div>
+                <h3
+                  className="headline-md text-[var(--foreground)] mb-2"
+                >
+                  Inquiry Received
+                </h3>
+                <p
+                  className="text-sm text-[var(--foreground-muted)] max-w-xs mx-auto"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  Our solutions team will review your request and respond within 24 hours.
+                </p>
+              </motion.div>
+            ) : (
+              <form onSubmit={handleSubmit} className="card p-8 flex flex-col gap-5">
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <div className="flex flex-col gap-1.5">
+                    <label
+                      htmlFor="contact-name"
+                      className="label-caps text-[var(--foreground-muted)]"
+                    >
+                      Full Name
+                    </label>
+                    <input
+                      id="contact-name"
+                      required
+                      name="name"
+                      autoComplete="name"
+                      value={form.name}
+                      onChange={update("name")}
+                      placeholder="Jane Smith"
+                      className="input-field"
+                    />
                   </div>
-                  <h3 className="text-2xl font-bold mb-2">Message Received</h3>
-                  <p className="text-white/60">Our partnership team will review your request and get back to you within 24 hours.</p>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <label className="text-xs font-bold uppercase tracking-widest text-white/40 ml-1">Full Name</label>
-                      <input 
-                        required
-                        name="name"
-                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-[#00b8ff] transition-colors text-white" 
-                        placeholder="John Doe"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-xs font-bold uppercase tracking-widest text-white/40 ml-1">Work Email</label>
-                      <input 
-                        required
-                        type="email"
-                        name="email"
-                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-[#00b8ff] transition-colors text-white" 
-                        placeholder="john@company.com"
-                      />
-                    </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label
+                      htmlFor="contact-email"
+                      className="label-caps text-[var(--foreground-muted)]"
+                    >
+                      Work Email
+                    </label>
+                    <input
+                      id="contact-email"
+                      required
+                      type="email"
+                      name="email"
+                      autoComplete="email"
+                      value={form.email}
+                      onChange={update("email")}
+                      placeholder="jane@enterprise.com"
+                      className="input-field"
+                    />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold uppercase tracking-widest text-white/40 ml-1">Company</label>
-                    <input 
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <div className="flex flex-col gap-1.5">
+                    <label
+                      htmlFor="contact-company"
+                      className="label-caps text-[var(--foreground-muted)]"
+                    >
+                      Company
+                    </label>
+                    <input
+                      id="contact-company"
                       required
                       name="company"
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-[#00b8ff] transition-colors text-white" 
-                      placeholder="Enterprise Logistics Inc."
+                      autoComplete="organization"
+                      value={form.company}
+                      onChange={update("company")}
+                      placeholder="Global Shipping Ltd."
+                      className="input-field"
                     />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold uppercase tracking-widest text-white/40 ml-1">How can we help?</label>
-                    <textarea 
-                      required
-                      name="message"
-                      rows={4}
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-[#00b8ff] transition-colors text-white resize-none" 
-                      placeholder="Describe your current logistics challenges..."
-                    />
+                  <div className="flex flex-col gap-1.5">
+                    <label
+                      htmlFor="contact-role"
+                      className="label-caps text-[var(--foreground-muted)]"
+                    >
+                      Role
+                    </label>
+                    <select
+                      id="contact-role"
+                      name="role"
+                      value={form.role}
+                      onChange={update("role")}
+                      className="input-field"
+                      style={{ cursor: "pointer" }}
+                    >
+                      <option value="">Select role…</option>
+                      <option>VP / Director of Operations</option>
+                      <option>Chief Logistics Officer</option>
+                      <option>CTO / CIO</option>
+                      <option>Supply Chain Manager</option>
+                      <option>Port Authority</option>
+                      <option>Other</option>
+                    </select>
                   </div>
-                  <button 
-                    disabled={loading}
-                    className="w-full btn-primary mt-4 disabled:opacity-50 disabled:cursor-not-allowed group"
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label
+                    htmlFor="contact-message"
+                    className="label-caps text-[var(--foreground-muted)]"
                   >
-                    {loading ? (
-                      <Loader2 className="w-5 h-5 animate-spin" />
-                    ) : (
-                      <>
-                        Initiate Connection 
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                      </>
-                    )}
-                  </button>
-                  <p className="text-[10px] text-center text-white/30 uppercase tracking-widest font-bold">
-                    Encrypted submission via Clarix Secure-Gate
-                  </p>
-                </form>
-              )}
-            </div>
-          </div>
+                    How can we help?
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    required
+                    name="message"
+                    rows={4}
+                    value={form.message}
+                    onChange={update("message")}
+                    placeholder="Describe your current logistics challenges and what you're looking to achieve…"
+                    className="input-field resize-none"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="btn-primary w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed"
+                  id="contact-submit"
+                >
+                  {loading ? (
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                  ) : (
+                    <>
+                      Submit Inquiry <ArrowRight className="w-4 h-4" />
+                    </>
+                  )}
+                </button>
+
+                <p
+                  className="text-center text-xs text-[var(--foreground-muted)] opacity-70"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  By submitting, you agree to our processing of personal data in
+                  accordance with our Privacy Policy.
+                </p>
+              </form>
+            )}
+          </motion.div>
         </div>
       </div>
     </section>

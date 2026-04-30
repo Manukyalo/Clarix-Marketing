@@ -1,96 +1,136 @@
 "use client";
 import { motion } from "framer-motion";
-import { Zap, Shield, Database, BarChart3, Cpu, Globe } from "lucide-react";
+import {
+  FileSearch,
+  BarChart3,
+  ShieldCheck,
+  MonitorDot,
+  Route,
+  Lock,
+} from "lucide-react";
 
-const features = [
+interface Feature {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  color: string;
+}
+
+const FEATURES: Feature[] = [
   {
+    icon: FileSearch,
     title: "AI Document Intelligence",
-    description: "Neural-powered extraction engines that transform unstructured port documentation into structured, actionable data in milliseconds.",
-    icon: Zap,
-    color: "#00b8ff"
+    description:
+      "Automated ingestion and verification of complex maritime and trade documentation with 99.9% OCR accuracy.",
+    color: "#00658e",
   },
   {
-    title: "Real-time Batch Auditing",
-    description: "Automated verification across the entire supply chain. Detect discrepancies and ensure compliance before they impact your bottom line.",
     icon: BarChart3,
-    color: "#00d1b2"
+    title: "Real-time Batch Auditing",
+    description:
+      "Instantly audit thousands of transactions across multiple jurisdictions to ensure financial and regulatory compliance.",
+    color: "#5400c3",
   },
   {
+    icon: ShieldCheck,
     title: "Enterprise Resilience",
-    description: "Military-grade encryption and regional data sovereignty. Built to exceed the security standards of global logistics leaders.",
-    icon: Shield,
-    color: "#7000ff"
+    description:
+      "Advanced risk modeling to predict disruptions before they occur, allowing for proactive routing adjustments.",
+    color: "#006b5a",
   },
   {
+    icon: MonitorDot,
     title: "Unified Command Center",
-    description: "A single pane of glass for multi-port operations. Orchestrate logistics, labor, and assets with unprecedented precision.",
-    icon: Globe,
-    color: "#00b8ff"
+    description:
+      "A single glass-pane view for global operations, integrating IoT telemetry and ERP data in real-time.",
+    color: "#00658e",
   },
   {
+    icon: Route,
     title: "Predictive Logistics",
-    description: "Anticipate bottlenecks with ML-driven forecasting. Turn historical data into a strategic advantage for future operations.",
-    icon: Cpu,
-    color: "#00d1b2"
+    description:
+      "Machine learning algorithms that optimize route efficiency and fuel consumption across sea and land freight.",
+    color: "#5400c3",
   },
   {
+    icon: Lock,
     title: "Immutable Ledger",
-    description: "Comprehensive audit trails for every transaction. Maintain a permanent, tamper-proof record of your logistics ecosystem.",
-    icon: Database,
-    color: "#7000ff"
-  }
+    description:
+      "Cryptographically secure audit trails for every container, ensuring absolute transparency and accountability.",
+    color: "#006b5a",
+  },
 ];
+
+const CONTAINER_VARIANTS = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08 } },
+};
+
+const ITEM_VARIANTS = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 export default function Features() {
   return (
-    <section id="features" className="py-24 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-20">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-6 tracking-tight"
+    <section
+      id="features"
+      className="section-gap"
+      style={{ background: "var(--surface-low)" }}
+    >
+      <div className="container-xl">
+        {/* Header */}
+        <div className="max-w-2xl mb-14">
+          <span className="azure-line mb-4" />
+          <p className="label-caps text-[var(--primary)] mb-3">Intelligence Modules</p>
+          <h2 className="headline-lg text-[var(--foreground)] mb-4">
+            Enterprise-grade architecture for global trade
+          </h2>
+          <p
+            className="text-[var(--foreground-muted)] leading-relaxed"
+            style={{ fontFamily: "var(--font-inter)" }}
           >
-            Built for the <span className="text-primary-gradient italic">Next Era</span> of Logistics
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-white/60 text-lg max-w-2xl mx-auto"
-          >
-            Clarix combines cutting-edge AI with robust enterprise architecture to solve the most complex challenges in global trade.
-          </motion.p>
+            Designed to solve the most complex challenges in global trade through
+            specialised intelligence modules that integrate seamlessly with your
+            existing infrastructure.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="glass-card p-8 group relative overflow-hidden"
-            >
-              <div 
-                className="absolute top-0 right-0 w-32 h-32 blur-[80px] opacity-10 transition-opacity group-hover:opacity-20" 
-                style={{ backgroundColor: feature.color }}
-              />
-              
-              <div className="w-12 h-12 rounded-xl glass flex items-center justify-center mb-6 text-white group-hover:scale-110 transition-transform">
-                <feature.icon className="w-6 h-6" style={{ color: feature.color }} />
+        {/* Grid */}
+        <motion.div
+          variants={CONTAINER_VARIANTS}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+        >
+          {FEATURES.map(({ icon: Icon, title, description, color }) => (
+            <motion.div key={title} variants={ITEM_VARIANTS} className="card p-7 group">
+              <div
+                className="w-10 h-10 rounded flex items-center justify-center mb-5 transition-transform duration-200 group-hover:scale-110"
+                style={{ backgroundColor: `${color}12` }}
+              >
+                <Icon
+                  className="w-5 h-5"
+                  style={{ color }}
+                  strokeWidth={1.75}
+                />
               </div>
-              
-              <h3 className="text-xl font-bold mb-4">{feature.title}</h3>
-              <p className="text-white/50 leading-relaxed font-inter text-sm">
-                {feature.description}
+              <h3
+                className="text-base font-semibold text-[var(--foreground)] mb-2"
+                style={{ fontFamily: "var(--font-manrope)" }}
+              >
+                {title}
+              </h3>
+              <p
+                className="text-sm text-[var(--foreground-muted)] leading-relaxed"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                {description}
               </p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
